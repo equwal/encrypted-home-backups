@@ -1,4 +1,4 @@
-# Automatic encrypted /home backups
+# Automatic daily encrypted /home backups
 
 # Install
 Encrypt and install filesystems on the backup disk.
@@ -30,3 +30,6 @@ Mount folder cannot be in the `/home`.
 Execute it as root with the device plugged in.
 
 `# ./backup`
+
+Or, if you have cron installed, it will install itself in cron.daily for fully
+automated encrypted backup.

@@ -2,3 +2,4 @@
 chown root backup
 cp backup /usr/bin
 cp backup.pl /usr/bin
+cp backup-daily /etc/cron.daily
