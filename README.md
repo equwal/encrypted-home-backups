@@ -1,4 +1,4 @@
-# Automatic daily encrypted /home backups
+# Automatic Daily Encrypted /home Backups
 
 # Install
 Encrypt and install filesystems on the backup disk.
@@ -25,11 +25,15 @@ Get the uuid with `# blkid` on the partition.
 
 Username is for the folder to backup under `/home`.
 
-Mount folder cannot be in the `/home`.
+Mount folder cannot be in the `/home/username` and must exist: `# mkdir /mnt`.
 
-Execute it as root with the device plugged in.
+Install it
 
-`# ./backup`
+`root # ./install`
+
+Run it for the first backup and to verify install to /usr/bin.
+
+`root # backup`
 
 Or, if you have cron installed, it will install itself in cron.daily for fully
-automated encrypted backup.
+automated daily encrypted backup.
