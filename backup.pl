@@ -23,5 +23,7 @@ my $mapper = "/dev/mapper/$last_half";
 `mkdir -p $mount`;
 `mount /dev/mapper/$last_half $mount`;
 # Do a home-only backup
-my $bname = `date`;
-`tar -cjf '$mount/backup-$bname.tar.bz2' /home/$user`;
+my $date = `date`;
+my $fname = "$mount/backup-$date";
+`mkdir '$fname'`;
+`cp -a /home/$user '$fname'`;
