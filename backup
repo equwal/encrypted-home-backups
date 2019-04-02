@@ -1,27 +1,2 @@
-#!/usr/bin/perl
-use strict;
-use warnings;
-my $uuid = $ARGV[0];
-my $keyfile = $ARGV[1];
-print "Press any key when the device is plugged in.\n";
-getc();
-# Put auto-dev-detect code here
-my $last_half;
-my $blkid = `blkid`;
-print "$blkid\n$uuid\n$keyfile";
-if($blkid =~ /(.*)$uuid.*/) {
-    print $1;
-    my $tmp = $1;
-    $tmp =~ m#/dev/(.*?):#;
-    $last_half = $1;
-} else {
-    die "Could not get a device ID from that UUID."
-}
-my $mount = "/mnt/dev/$last_half";
-my $mapper = "/dev/mapper/$last_half";
-`cryptsetup --key-file $keyfile luksOpen /dev/$last_half $last_half`;
-`mkdir -p $mount`;
-`mount /dev/mapper/$last_half $mount`;
-# Do a home-only backup
-my $bname = `date`;
-`tar -cjf '$mount/backup-$bname.tar.bz2' /home/jose`;
+#!/bin/bash
+backup.pl '64f91d6e-90e2-41d7-8494-bcb1d01b7b40' '/home/jose/bin/keyfile' 'jose' '/mnt'
