@@ -1,2 +1,2 @@
 #!/bin/bash
-backup.pl '64f91d6e-90e2-41d7-8494-bcb1d01b7b40' '/home/jose/bin/keyfile' 'jose' '/mnt'
+backup.pl 'bf5675ff-2504-4b47-9cd2-0300af06b2fa' '/home/jose/crypto-key-file' 'jose' '/mnt'

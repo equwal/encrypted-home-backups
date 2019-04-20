@@ -6,19 +6,23 @@ my $keyfile = $ARGV[1];
 my $user = $ARGV[2];
 my $mountfolder = $ARGV[3];
 # Put auto-dev-detect code here
-my $last_half;
+my $last_half = '';
 my $blkid = `blkid`;
-print "$blkid\n$uuid\n$keyfile";
-if($blkid =~ /(.*)$uuid.*/) {
-    print $1;
-    my $tmp = $1;
-    $tmp =~ m#/dev/(.*?):#;
-    $last_half = $1;
-} else {
-    die "Could not get a device ID from that UUID."
+for(split "\n", $blkid) {
+    print;
+    print "\n";
+    if(m#$uuid#) {
+        m#/dev/(.*):#;
+        $last_half = $1;
+        last;
+    }
 }
-my $mount = "$mountfolder/dev/$last_half";
-my $mapper = "/dev/mapper/$last_half";
+if($last_half eq '') {
+    die "Failed to associate a dev device with that UUID.";
+} else {
+    print "Last half: $last_half\n";
+}
+my $mount = "$mountfolder/$last_half";
 `cryptsetup --key-file $keyfile luksOpen /dev/$last_half $last_half`;
 `mkdir -p $mount`;
 `mount /dev/mapper/$last_half $mount`;
