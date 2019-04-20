@@ -1,2 +1,2 @@
 #!/bin/bash
-backup.pl 'bf5675ff-2504-4b47-9cd2-0300af06b2fa' '/home/jose/crypto-key-file' 'jose' '/mnt'
+backup.pl 'uuid' 'key-file-path' 'home-dir-username' 'mount-dir'

@@ -1,5 +1,6 @@
 #!/bin/bash
-#chown root backup
+chown root backup
+chown root backup.pl
 cp backup /usr/bin
 cp backup.pl /usr/bin
-cp backup-daily /etc/cron.daily
+cp backup /etc/cron.daily/backup-daily
